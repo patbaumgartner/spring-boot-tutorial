@@ -4,9 +4,7 @@
 
 What we started last year in November, is now finally ready. We spent two days in the studio to record some material for a Spring Boot video tutorial in German. Watch the short intro we produced for social media.
 
-<video width="660" controls>
-    <source src="https://www.patbaumgartner.com/videos/spring-boot.mp4" type="video/mp4">
-</video>
+[![Spring Boot Tutorial Teaser](https://www.patbaumgartner.com/images/video-tutorial-preview.png)](https://www.patbaumgartner.com/videos/spring-boot.mp4 "Click to Watch!")
 
 Accompanying material for the Video tutorial.
 
