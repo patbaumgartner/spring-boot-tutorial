@@ -1,0 +1,43 @@
+sudo: false
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+script:
+  - cd tutorial-demo
+  - mvn clean install
+
+  - cd ../tutorial-devtools
+  - mvn clean install
+  
+  - cd ../tutorial-data
+  - mvn clean install
+  
+  - cd ../tutorial-data-rest
+  - mvn clean install
+ 
+  - cd ../tutorial-mvc
+  - mvn clean install
+  
+  - cd ../tutorial-security
+  - mvn clean install
+    
+  - cd ../tutorial-test
+  - mvn clean install
+
+  - cd ../tutorial-actuator
+  - mvn clean install
+
+  - cd ../tutorial-starter
+  - cd javafaker-solution-application
+  - mvn clean install
+  - cd ../javafaker-solution-spring-boot-autoconfigure 
+  - mvn clean install
+  - cd ../javafaker-solution-spring-boot-starter
+  - mvn clean install
+
+notifications:
+  email:
+    - contact@patbaumgartner.com

@@ -1,0 +1,23 @@
+<!DOCTYPEhtml>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+	<title>Home Page</title>
+	<link href="/css/typebase.css" rel="stylesheet">
+</head>
+<body>
+	<h1>Hello World!</h1>
+	<p>
+		Welcome!
+		<br />
+		Logged user: <span sec:authentication="name">Bob</span>
+		<br />
+		Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+		
+		<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+	</p>
+</body>
+</html>
