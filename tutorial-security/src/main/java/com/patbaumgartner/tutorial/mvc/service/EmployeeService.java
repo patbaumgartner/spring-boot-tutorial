@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService {
 
-	@Secured("ROLE_USER")
-	public String secure() {
-		return "Hello Security";
-	}
+    @Secured("ROLE_USER")
+    public String secure() {
+        return "Hello Security";
+    }
 
-	@PreAuthorize("hasRole('ADMIN')")
-	public String authorized() {
-		return "Hello World";
-	}
+    @PreAuthorize("hasRole('ADMIN')")
+    public String authorized() {
+        return "Hello World";
+    }
 
-	@PreAuthorize("false")
-	public String denied() {
-		return "Goodbye World";
-	}
+    @PreAuthorize("false")
+    public String denied() {
+        return "Goodbye World";
+    }
 }

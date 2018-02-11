@@ -7,9 +7,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.patbaumgartner.tutorial.test.controller.EmployeeRestController;
+import com.patbaumgartner.tutorial.test.domain.Employee;
+import com.patbaumgartner.tutorial.test.repository.EmployeeRepository;
+import com.patbaumgartner.tutorial.test.service.EmployeeService;
+import com.patbaumgartner.tutorial.test.service.EmployeeServiceImpl;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,44 +25,37 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.patbaumgartner.tutorial.test.controller.EmployeeRestController;
-import com.patbaumgartner.tutorial.test.domain.Employee;
-import com.patbaumgartner.tutorial.test.repository.EmployeeRepository;
-import com.patbaumgartner.tutorial.test.service.EmployeeService;
-import com.patbaumgartner.tutorial.test.service.EmployeeServiceImpl;
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(EmployeeRestController.class)
 public class EmployeeRestControllerTest {
 
-	@TestConfiguration
-	static class ContextConfiguration {
+    @MockBean
+    private EmployeeRepository repository;
+    @Autowired
+    private MockMvc mvc;
 
-		@Bean
-		public EmployeeService employeeService() {
-			return new EmployeeServiceImpl();
-		}
-	}
+    @Test
+    public void givenEmployees_whenGetEmployees_thenReturnJsonArray() throws Exception {
 
-	@MockBean
-	private EmployeeRepository repository;
+        Employee carmen = new Employee("Carmen", "Bianchi");
 
-	@Autowired
-	private MockMvc mvc;
-	
-	@Test
-	public void givenEmployees_whenGetEmployees_thenReturnJsonArray() throws Exception {
+        List<Employee> allEmployees = Arrays.asList(carmen);
 
-		Employee carmen = new Employee("Carmen", "Bianchi");
+        given(repository.findAll()).willReturn(allEmployees);
 
-		List<Employee> allEmployees = Arrays.asList(carmen);
+        mvc.perform(get("/api/employees").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].lastName", is(carmen.getLastName())));
+    }
 
-		given(repository.findAll()).willReturn(allEmployees);
+    @TestConfiguration
+    static class ContextConfiguration {
 
-		mvc.perform(get("/api/employees").contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$", hasSize(1)))
-			.andExpect(jsonPath("$[0].lastName", is(carmen.getLastName())));
-	}
+        @Bean
+        public EmployeeService employeeService() {
+            return new EmployeeServiceImpl();
+        }
+    }
 
 }

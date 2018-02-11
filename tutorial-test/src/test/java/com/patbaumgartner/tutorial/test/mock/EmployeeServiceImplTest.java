@@ -3,6 +3,10 @@ package com.patbaumgartner.tutorial.test.mock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
+import com.patbaumgartner.tutorial.test.domain.Employee;
+import com.patbaumgartner.tutorial.test.repository.EmployeeRepository;
+import com.patbaumgartner.tutorial.test.service.EmployeeService;
+import com.patbaumgartner.tutorial.test.service.EmployeeServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,40 +15,34 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.patbaumgartner.tutorial.test.domain.Employee;
-import com.patbaumgartner.tutorial.test.repository.EmployeeRepository;
-import com.patbaumgartner.tutorial.test.service.EmployeeService;
-import com.patbaumgartner.tutorial.test.service.EmployeeServiceImpl;
-
 @RunWith(SpringRunner.class)
 public class EmployeeServiceImplTest {
 
-	@TestConfiguration
-	static class ContextConfiguration {
+    @Autowired
+    private EmployeeService employeeService;
+    @MockBean
+    private EmployeeRepository employeeRepository;
 
-		@Bean
-		public EmployeeService employeeService() {
-			return new EmployeeServiceImpl();
-		}
-	}
+    @Test
+    public void whenValidName_thenEmployeeShouldBeFound() {
+        String firstName = "Carmen";
+        String lastName = "Bianci";
+        Employee carmen = new Employee(firstName, lastName);
 
-	@Autowired
-	private EmployeeService employeeService;
+        given(employeeRepository.findByLastName(lastName)).willReturn(carmen);
 
-	@MockBean
-	private EmployeeRepository employeeRepository;
+        Employee found = employeeService.getEmployeeByName(lastName);
 
-	@Test
-	public void whenValidName_thenEmployeeShouldBeFound() {
-		String firstName = "Carmen";
-		String lastName = "Bianci";
-		Employee carmen = new Employee(firstName, lastName);
+        assertThat(found.getLastName()).isEqualTo(lastName);
+    }
 
-		given(employeeRepository.findByLastName(lastName)).willReturn(carmen);
+    @TestConfiguration
+    static class ContextConfiguration {
 
-		Employee found = employeeService.getEmployeeByName(lastName);
-
-		assertThat(found.getLastName()).isEqualTo(lastName);
-	}
+        @Bean
+        public EmployeeService employeeService() {
+            return new EmployeeServiceImpl();
+        }
+    }
 
 }

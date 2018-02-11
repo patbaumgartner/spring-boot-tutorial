@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class TutorialMvcApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TutorialMvcApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TutorialMvcApplication.class, args);
+    }
 }
