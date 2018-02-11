@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-public class TutorialDataRestApplication implements CommandLineRunner {
+public class TutorialDataApplication implements CommandLineRunner {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -28,6 +28,6 @@ public class TutorialDataRestApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(TutorialDataRestApplication.class, args);
+		SpringApplication.run(TutorialDataApplication.class, args);
 	}
 }
