@@ -32,11 +32,11 @@ script:
 
   - cd ../tutorial-starter
 
-  - cd ../javafaker-solution-spring-boot-autoconfigure
+  - cd javafaker-spring-boot-autoconfigure
   - mvn clean install
-  - cd javafaker-solution-spring-boot-starter
+  - cd ../javafaker-spring-boot-starter
   - mvn clean install
-  - cd ../javafaker-solution-application
+  - cd ../javafaker-application
   - mvn clean install
 
 notifications:
