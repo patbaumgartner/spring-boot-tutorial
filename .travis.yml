@@ -11,19 +11,19 @@ script:
 
   - cd ../tutorial-devtools
   - mvn clean install
-  
+
   - cd ../tutorial-data
   - mvn clean install
-  
+
   - cd ../tutorial-data-rest
   - mvn clean install
- 
+
   - cd ../tutorial-mvc
   - mvn clean install
-  
+
   - cd ../tutorial-security
   - mvn clean install
-    
+
   - cd ../tutorial-test
   - mvn clean install
 
@@ -31,10 +31,10 @@ script:
   - mvn clean install
 
   - cd ../tutorial-starter
-  
-  - cd javafaker-solution-spring-boot-starter
+
+  - cd ../javafaker-solution-spring-boot-autoconfigure
   - mvn clean install
-  - cd ../javafaker-solution-spring-boot-autoconfigure 
+  - cd javafaker-solution-spring-boot-starter
   - mvn clean install
   - cd ../javafaker-solution-application
   - mvn clean install
