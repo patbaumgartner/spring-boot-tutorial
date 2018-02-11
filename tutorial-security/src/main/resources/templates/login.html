@@ -1,18 +1,18 @@
 <!DOCTYPEhtml>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Login</title>
-	<link href="/css/typebase.css" rel="stylesheet">
+    <title>Login</title>
+    <link href="/css/typebase.css" rel="stylesheet">
 </head>
 <body>
-	<h1>Login!</h1>
-	<div th:if="${param.error}">Invalid username and password.</div>
-	<div th:if="${param.logout}">You have been logged out.</div>
-	<form th:action="@{/login}" method="post">
-		<label>User Name :<input type="text" name="username"/></label>
-		<label>Password:<input type="password" name="password"/></label>
-		<input type="submit" value="Sign In"/>
-	</form>
+<h1>Login!</h1>
+<div th:if="${param.error}">Invalid username and password.</div>
+<div th:if="${param.logout}">You have been logged out.</div>
+<form th:action="@{/login}" method="post">
+    <label>User Name :<input type="text" name="username"/></label>
+    <label>Password:<input type="password" name="password"/></label>
+    <input type="submit" value="Sign In"/>
+</form>
 </body>
 </html>
