@@ -13,7 +13,7 @@
     <description>JavaFaker Spring Boot Autoconfigure Project</description>
 
     <properties>
-        <spring-boot.version>2.0.0.RC1</spring-boot.version>
+        <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
         <java-faker.version>0.14</java-faker.version>
         <lombok.version>1.16.18</lombok.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
