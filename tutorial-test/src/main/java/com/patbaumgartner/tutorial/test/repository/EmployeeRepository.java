@@ -10,6 +10,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Employee findByLastName(String lastName);
 
-    @Query("select e from Employee e where e.lastName = ?")
+    @Query("select e from Employee e where e.lastName = :lastName")
     List<Employee> findQueryByLastName(String lastName);
 }
